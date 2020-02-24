@@ -1,0 +1,5 @@
+{
+    "ignore":  [
+        "./public/js/swiper.animate1.0.3.min.js"
+      ]
+}
