@@ -80,8 +80,8 @@
         </div>
       </swiper>
     </div>
-    <span>+++++++++</span>
-  </div>
+<span>+++++++++</span>
+</div>
 </template>
 
 <script>
