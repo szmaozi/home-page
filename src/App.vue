@@ -1,59 +1,37 @@
 <template>
   <div id="app">
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div> -->
-    <router-view/>
+    <!--<img src="./assets/logo.png">-->
+    <!--<div>-->
+      <!--<p>-->
+        <!--If Element is successfully added to this project, you'll see an-->
+        <!--<code v-text="'<el-button>'"></code>-->
+        <!--below-->
+      <!--</p>-->
+      <!--<el-button>el-button</el-button>-->
+    <!--</div>-->
+    <!--<HelloWorld msg="Welcome to Your Vue.js App"/>-->
+    <Home />
   </div>
 </template>
 
 <script>
-export default {
-  name: 'App',
-  created: function(){
-    var M = document.querySelector('meta[name="generator"]').getAttribute('data-variable'),
-    D = M.split(',');
-    M = new Array();
-    M['weburl'] = D[0];
-    M['lang'] = D[1];
-    M['classnow'] = parseInt(D[2]);
-    M['id'] = parseInt(D[3]);
-    M['module'] = parseInt(D[4]);
-    M['tem'] = D[0] + 'templates/' + D[5];
-    var deviceType = /iPad/.test(navigator.userAgent) ? 't' : /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Silk/.test(navigator.userAgent) ? 'm' : 'p',
-        ucBro = /UC/.test(navigator.userAgent)
+import Home from './views/Home/Home.vue'
 
-    console.log(M)
-    console.log(deviceType)
-    console.log(ucBro)
+export default {
+  name: 'app',
+  components: {
+    Home
   }
 }
 </script>
 
-<style lang="scss">
-body {
-  padding:0px;
-  margin: 0px;
-}
+<style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  // text-align: center;
+  text-align: center;
   color: #2c3e50;
+  margin-top: 60px;
 }
-
-// #nav {
-//   padding: 30px;
-
-//   a {
-//     font-weight: bold;
-//     color: #2c3e50;
-
-//     &.router-link-exact-active {
-//       color: #42b983;
-//     }
-//   }
-// }
 </style>
