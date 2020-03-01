@@ -54,8 +54,10 @@
       <!--slot="button-prev" >-->
     <!--</div>-->
     <div class="banner-ctrl">
-      <div class="ctrl-box ctrl-left">AAA<i class="fa fa-angle-left"></i></div>
-      <div class="ctrl-box ctrl-right">BBB<i class="fa fa-angle-right"></i></div>
+      <!--<div class="ctrl-box ctrl-left">AAA<i class="fa fa-angle-left"></i></div>-->
+      <!--<div class="ctrl-box ctrl-right">BBB<i class="fa fa-angle-right"></i></div>-->
+      <div class="ctrl-box ctrl-left"><i class="el-icon-caret-left"></i></div>
+      <div class="ctrl-box ctrl-right"><i class="el-icon-caret-right"></i></div>
     </div>
     <!--<div class="banner-pager"></div>-->
     <div class="banner-down">down<i class="fa fa-angle-down"></i></div>
@@ -135,5 +137,206 @@ export default {
   position: absolute;
   left: 50%;
   top: 50%;
+}
+
+/*instance of swiper slide*/
+.banner-box {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.banner-cut {
+    width: 1000%;
+    height: 100%
+}
+
+.banner-bin {
+    /*width: 10%;*/
+/*    height: 100%;
+    float: left;
+    display: block;
+    overflow: hidden;
+    background: center no-repeat;
+    background-size: cover;
+    position: relative*/
+
+    background-size:100% 100%;
+    width:100%;
+    height: 100%;
+}
+
+/* swiper - banner - pagination */
+.banner-pager {
+    position: absolute;
+    height: 3px;
+    line-height: 0;
+    top: 84%;
+    bottom: auto !important;
+    left: 0;
+    right: 0;
+    text-align: center
+}
+
+.banner-pager .swiper-pagination-bullet {
+    width: 40px;
+    height: 3px;
+    position: relative;
+    line-height: 3px;
+    border-radius: 0;
+    background: #fff;
+    opacity: 1
+}
+
+.banner-pager .swiper-pagination-bullet:before {
+    position: absolute;
+    width: 40px;
+    height: 30px;
+    content: '';
+    left: 0;
+    top: -10px
+}
+
+.banner-pager .swiper-pagination-bullet-active {
+    background: #00dfb9
+}
+
+
+.banner-down {
+    position: absolute;
+    top: 90%;
+    cursor: pointer;
+    left: 50%;
+    margin-left: -24px;
+    width: 47px;
+    height: 47px;
+    text-align: center;
+    line-height: 47px;
+    color: #fff;
+    font-size: 24px
+}
+
+.banner-down:before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 47px;
+    height: 47px;
+    background: #fff;
+    opacity: .2;
+    border-radius: 50%;
+    transition: .3s;
+    -moz-transition: .3s;
+    -ms-transition: .3s;
+    -o-transition: .3s;
+    -webkit-transition: .3s
+}
+
+.banner-down:hover:before {
+    background: #00dfb9;
+    opacity: .6
+}
+
+.banner-down i {
+    position: relative;
+    z-index: 2
+}
+
+.banner-box:hover .banner-ctrl {
+    opacity: 1
+}
+
+.banner-box.sidebar .banner-bin img {
+    width: 100%
+}
+
+.ctrl-box {
+    opacity: .5
+}
+
+.ctrl-box:hover {
+    opacity: 1
+}
+
+.banner-ctrl .ctrl-box {
+    position: absolute;
+    color: #a8a8a8;
+    width: 80px;
+    text-align: center;
+    line-height: 80px;
+    font-size: 50px;
+    cursor: pointer;
+    transition: .3s;
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+    -ms-transition: .3s;
+    -o-transition: .3s
+}
+
+.banner-ctrl .ctrl-box:hover {
+    color: #00dfb9
+}
+
+.banner-ctrl .ctrl-left {
+    left: 5%;
+    top: 46%;
+    margin-top: -40px
+}
+.banner-ctrl .ctrl-right {
+    right: 5%;
+    top: 46%;
+    margin-top: -40px
+}
+
+@media(max-width:767px) and (orientation:landscape) {
+    .banner-bin .table-box {
+        padding-bottom: 0
+    }
+
+    .banner-news {
+        top: 90%;
+        left: 12.5%;
+        margin: -15px 0 0 0
+    }
+
+    .banner-pager {
+        top: 90%;
+        width: auto !important;
+        left: auto !important;
+        right: 2.5%;
+        margin-top: -1.5px
+    }
+
+    .banner-down {
+        top: 90%;
+        left: 2.5%;
+        margin: -24px 0 0 0
+    }
+}
+
+@media(max-width:767px) and (orientation:portrait) {
+    .banner-bin.swiper-slide-active .banner-write .w1 {
+        line-height: .4
+    }
+
+    .banner-bin .table-box {
+        padding-bottom: 20%
+    }
+
+    .banner-news {
+        top: 74%
+    }
+
+    .banner-pager {
+        top: 82%
+    }
+
+    .banner-down {
+        top: 88%
+    }
+
+    .banner-ctrl {
+        display: none
+    }
 }
 </style>

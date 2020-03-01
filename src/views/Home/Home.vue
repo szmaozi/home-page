@@ -1,100 +1,24 @@
 <template>
   <div class="home">
-    <Header />
-    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    <!-- swiper -->
+    <!--<Header />-->
+    <HomeHeader />
     <div class="window-box">
-      <div class="window-head active">
-        <div class="head-left">
-          <img src="../../../public/images/1487557837.png" />
-        </div>
-        <hr />
-        <div class="visible-lg-block nav-tabs">
-          <ul class="swiper-pagination"></ul>
-        </div>
-        <div class="head-right r1 active">
-          <a href="tel:+86-13570805511" title="+86-13570805511">
-            <i class="fa fa-phone"></i>
-            <b>+86-13570805511</b>
-          </a>
-        </div>
-        <div class="head-rights">
-          <ol>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ol>
-        </div>
-      </div>
-      <!-- <swiper :options="swiperOption" class="window-cut" style="height: 800px" data-title='xxxxxxxx'> -->
-      <swiper :options="swiperOption" class="window-cut" data-title="xxxxxxxx">
-        <!-- <swiper-slide style="background-color:#41b883" data-title="首页">mooSlide 1</swiper-slide>
-        <swiper-slide style="background-color:red" data-title='服务'>Slide 2</swiper-slide>
-        <swiper-slide style="background-color:skyblue" data-title='案例'>Slide 3</swiper-slide>
-        <swiper-slide style="background-color:seagreen" data-title='关于'>Slide 4</swiper-slide>
-        <swiper-slide style="background-color:yellow" data-title='合作'>Slide 5</swiper-slide>
-        <swiper-slide style="background-color:pink" data-title='联系'>Slide 6</swiper-slide> -->
-        <swiper-slide style="background-color:#41b883" data-title="首页">
-          <!-- <div class="ani banner-box" swiper-animate-effect="slidInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s"> -->
+      <swiper :options="swiperOption" class="window-cut">
+        <swiper-slide style="background-color:#41b883" data-hash="banner" data-title="首页">
+          <!-- <div class="ani banner-box" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s"> -->
           <Banner />
           <!-- </div> -->
         </swiper-slide>
-        <swiper-slide data-title="服务">
-          <div
-            class="ani"
-            swiper-animate-effect="fadeInUp"
-            swiper-animate-duration="0.5s"
-            swiper-animate-delay="0.3s"
-          >
-          </div>
+        <swiper-slide data-hash="service" data-title="服务">
         </swiper-slide>
-        <swiper-slide data-title="案例">
-          <div
-            class="ani"
-            swiper-animate-effect="fadeInUp"
-            swiper-animate-duration="0.5s"
-            swiper-animate-delay="0.3s"
-          >
-            Slide 3
-          </div>
+        <swiper-slide data-hash="case" data-title="案例">
         </swiper-slide>
-        <swiper-slide style="background-color:seagreen" data-title="关于">
-          <div
-            class="ani"
-            swiper-animate-effect="fadeInUp"
-            swiper-animate-duration="0.5s"
-            swiper-animate-delay="0.3s"
-          >
-            Slide 4
-          </div>
+        <swiper-slide style="background-color:seagreen" data-hash="about" data-title="关于">
         </swiper-slide>
-        <swiper-slide style="background-color:yellow" data-title="合作">
-          <div
-            class="ani"
-            swiper-animate-effect="fadeInUp"
-            swiper-animate-duration="0.5s"
-            swiper-animate-delay="0.3s"
-          >
-            Slide 5
-          </div>
+        <swiper-slide style="background-color:yellow" data-hash="hezuo" data-title="合作">
         </swiper-slide>
-        <swiper-slide style="background-color:pink" data-title="联系">
-          <div
-            class="ani"
-            swiper-animate-effect="fadeInUp"
-            swiper-animate-duration="0.5s"
-            swiper-animate-delay="0.3s"
-          >
-            Slide 6
-          </div>
+        <swiper-slide style="background-color:pink" data-hash="contract" data-title="联系">
         </swiper-slide>
-        <!-- <swiper-slide class="ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s" style="background-color:#41b883" data-title="首页">mooSlide 1</swiper-slide>
-        <swiper-slide class="ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s" style="background-color:red" data-title='服务'>Slide 2</swiper-slide>
-        <swiper-slide class="ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s" style="background-color:skyblue" data-title='案例'>Slide 3</swiper-slide>
-        <swiper-slide class="ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s" style="background-color:seagreen" data-title='关于'>Slide 4</swiper-slide>
-        <swiper-slide class="ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s" style="background-color:yellow" data-title='合作'>Slide 5</swiper-slide>
-        <swiper-slide class="ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s" style="background-color:pink" data-title='联系'>Slide 6</swiper-slide> -->
         <span>-------------</span>
         <!-- <div class="swiper-pagination" slot="pagination"></div> -->
         <!--         <div class="swiper-button-prev" slot="button-prev"></div>
@@ -112,7 +36,7 @@
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
 import { swiper, swiperSlide } from "vue-awesome-swiper";
-import Header from "./Header.vue";
+import HomeHeader from "./HomeHeader.vue";
 import Banner from "./Banner.vue";
 import * as swiperAni from "../../../public/js/swiper.animate.min.js";
 // import {swiperAnimateCache,swiperAnimate} from "../../../public/js/swiper.animate.min.js"
@@ -122,40 +46,38 @@ export default {
     return {
       msg: "",
       swiperOption: {
-        //wrapperClass : 'maozi',
-        notNextTick: true, //notNextTick是一个组件自有属性，如果notNextTick设置为true，组件则不会通过NextTick来实例化swiper，也就意味着你可以在第一时间获取到swiper对象，假如你需要刚加载遍使用获取swiper对象来做什么事，那么这个属性一定要是true
         direction: "vertical",
-        // direction: 'horizontal',
-        // slidesPerView: 1,
+        slidesPerView: 1,
         centeredSlides: true,
-        // spaceBetween: 30,
-        //width: window.innerWidth,
-        //height: window.innerHeight,
         lazy: true,
-        // lazyLoadingOnTransitionStart: true,
-        // roundLengths : true,
-        //将observe应用于Swiper的父元素。当Swiper的父元素变化时，例如window.resize，Swiper更新
-        observer:true,
-        observeParents:true,
-        //Swiper使用flexbox布局(display: flex)，开启这个设定会在Wrapper上添加等于slides相加的宽或高，在对flexbox布局的支持不是很好的浏览器中可能需要用到。
-        setWrapperSize: true,
-        // resistance: true,
         resistanceRatio: 0,
-        preventInteractionOnTransition: true,
         speed: 700,
         effect: "slide",
-        // effect: 'fade',
         parallax: "true",
-        // loop: true,
         keyboard: {
           enabled: true
         },
         mousewheel: true,
+        hashNavigation: {
+          watchState: true,
+        },
+        // lazyLoadingOnTransitionStart: true,
+        // roundLengths : true,
+        //将observe应用于Swiper的父元素。当Swiper的父元素变化时，例如window.resize，Swiper更新
+        // observer:true,
+        // observeParents:true,
+        //Swiper使用flexbox布局(display: flex)，开启这个设定会在Wrapper上添加等于slides相加的宽或高，在对flexbox布局的支持不是很好的浏览器中可能需要用到。
+        // setWrapperSize: true,
+        // resistance: true,
+        // spaceBetween: 30,
+        //width: window.innerWidth,
+        //height: window.innerHeight,
+        //preventInteractionOnTransition: true,
+        // loop: true,
         pagination: {
           el: ".window-head ul",
-          // el: 'window-head ul',
           bulletClass: "cut",
-          bulletActiveClxass: "active",
+          bulletActiveClass: "active",
           clickable: true,
           // type: 'custom',
           // renderCustom: function (swiper, current, total) {
@@ -191,7 +113,6 @@ export default {
         //   nextEl: '.swiper-button-next',
         //   prevEl: '.swiper-button-prev'
         // },
-        hashNavigation: true,
         // watchSlidesProgress : true,
         // watchSlidesVisibility : true,
         // scrollbar: {
@@ -242,7 +163,7 @@ export default {
   components: {
     swiper,
     swiperSlide,
-    Header,
+    HomeHeader,
     Banner
   }
 };
