@@ -1,6 +1,6 @@
 <template>
   <!-- swiper -->
-  <swiper :options="swiperOption">
+  <swiper :options="swiperOption1">
 
     
     <swiper-slide v-for="item in images" :key="item">
@@ -8,58 +8,12 @@
         <div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div>
       </div>
     </swiper-slide>
-    
-    <!--<swiper-slide>-->
-      <!--<div-->
-        <!--data-background="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1582649120105&di=fa9481b3541725be3a90b1d94a4be0d6&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F49b00b2ddb0f5cd378647e2b498eb0b2b6b1530298ad1-Zt83Rc_fw658"-->
-        <!--class="swiper-lazy banner-bin">-->
-        <!--<div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div>-->
-      <!--</div>-->
-    <!--</swiper-slide>-->
-    <!--<swiper-slide>-->
-      <!--<img-->
-        <!--class="swiper-lazy"-->
-        <!--:data-src="require('@../../../public/images/1481164379.jpg')"-->
-        <!--alt=""-->
-      <!--/>-->
-      <!--<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>-->
-    <!--</swiper-slide>-->
-    <!--<swiper-slide>-->
-      <!--<img-->
-        <!--data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1582651017325&di=424a5b5711b5edccb17239551de10895&imgtype=0&src=http%3A%2F%2Fmat1.gtimg.com%2Ffinance%2Fimages%2Fstock%2Fp%2Fnews%2Fb96ce7b45bcdd5db.jpg"-->
-        <!--class="swiper-lazy"-->
-      <!--/>-->
-      <!--<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>-->
-    <!--</swiper-slide>-->
-    <!--<swiper-slide>-->
-      <!--<img-->
-        <!--data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1582651018017&di=e3e2daf7e269d20118c2ed6c7b4154eb&imgtype=0&src=http%3A%2F%2Fpic32.nipic.com%2F20130904%2F3682379_154117447385_2.jpg"-->
-        <!--class="swiper-lazy"-->
-      <!--/>-->
-      <!--<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>-->
-    <!--</swiper-slide>-->
-    <!--<swiper-slide>-->
-      <!--<img-->
-        <!--data-src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2349341871,3522704686&fm=26&gp=0.jpg"-->
-        <!--class="swiper-lazy"-->
-      <!--/>-->
-      <!--<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>-->
-    <!--</swiper-slide>-->
-    <div class="swiper-pagination banner-pager" slot="pagination"></div>
-    <!--<div-->
-      <!--class="swiper-button-next swiper-button-white a"-->
-      <!--slot="button-next" ></div>-->
-    <!--<div-->
-      <!--class="swiper-button-prev swiper-button-white b"-->
-      <!--slot="button-prev" >-->
-    <!--</div>-->
     <div class="banner-ctrl">
-      <!--<div class="ctrl-box ctrl-left">AAA<i class="fa fa-angle-left"></i></div>-->
-      <!--<div class="ctrl-box ctrl-right">BBB<i class="fa fa-angle-right"></i></div>-->
       <div class="ctrl-box ctrl-left"><i class="el-icon-caret-left"></i></div>
       <div class="ctrl-box ctrl-right"><i class="el-icon-caret-right"></i></div>
     </div>
-    <!--<div class="banner-pager"></div>-->
+    <div class="banner-pager swiper-pagination" slot="pagination"></div>
+    <!-- <div class="banner-pager" slot="pagination"></div> -->
     <div class="banner-down">down<i class="fa fa-angle-down"></i></div>
   </swiper>
 </template>
@@ -72,24 +26,30 @@ export default {
 
   data() {
     return {
-      swiperOption: {
+      swiperOption1: {
         // Enable lazy loading
         lazy: {
           loadPrevNext: true,
         },
-        speed: 500,
+        speed: 800,
         loop: true,
         keyboard: {
           enabled: true,
         },
-        autoplay: 4500,
-        autoplayDisableOnIneraction: true,
+        // autoplay: {
+        //   delay: 3000,
+        //   stopOnLastSlide: false,
+        //   disableOnInteraction: true,
+        // },
         grabCursor: true,
         slidesPerView: 1,
         mousewheel: false,
         pagination: {
-          el: '.swiper-pagination',
-          clickable: true
+          el: '.banner-pager',
+          // el: '.swiper-pagination',
+          clickable: true,
+          bulletClass: 'banner-page-bullet',
+          bulletActiveClass: 'active'
         },
         navigation: {
           nextEl: '.ctrl-right',
@@ -114,10 +74,11 @@ export default {
   }
 }
 </script>
+
 <style lang="css" scoped>
-@import "~swiper/dist/css/swiper.css";
+/* @import "~swiper/dist/css/swiper.css"; */
 /* @import '~animate.css/animate.min.css'; */
-@import "../../../public/css/global.css";
+/* @import "../../../public/css/global.css"; */
 
 .swiper-slide {
   text-align: center;
@@ -153,17 +114,15 @@ export default {
 
 .banner-bin {
     /*width: 10%;*/
-/*    height: 100%;
+/*    height: 100%; */
     float: left;
     display: block;
     overflow: hidden;
-    background: center no-repeat;
-    background-size: cover;
-    position: relative*/
-
-    background-size:100% 100%;
+    position: relative;
     width:100%;
     height: 100%;
+    background: center no-repeat;
+    background-size: cover;
 }
 
 /* swiper - banner - pagination */
@@ -175,10 +134,40 @@ export default {
     bottom: auto !important;
     left: 0;
     right: 0;
-    text-align: center
+    text-align: center;
+    background: yellow;
 }
 
-.banner-pager .swiper-pagination-bullet {
+.swiper-pagination-bullet {
+  height: 300px;
+  background: red !important;
+}
+
+.banner-page-bullet{
+    width: 40px;
+    height: 3px;
+    position: relative;
+    line-height: 3px;
+    border-radius: 0;
+    /* background: #fff; */
+    background: red;
+    opacity: 1
+}
+
+.banner-page-bullet:before {
+    position: absolute;
+    width: 40px;
+    height: 30px;
+    content: '';
+    left: 0;
+    top: -10px
+}
+
+.banner-page-bullet .active {
+    background: #00dfb9
+}
+
+/* .banner-pager .swiper-pagination-bullet {
     width: 40px;
     height: 3px;
     position: relative;
@@ -199,7 +188,7 @@ export default {
 
 .banner-pager .swiper-pagination-bullet-active {
     background: #00dfb9
-}
+} */
 
 
 .banner-down {

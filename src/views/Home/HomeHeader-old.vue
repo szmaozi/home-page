@@ -13,31 +13,34 @@
         </div>
 
         <hr id="id_hr" />
-        <ul class="nav-tabs swiper-pagination hidden-sm-and-down" id="id_nav_tabs" @mouseenter="nav_tabs_active" @mousemove="nav_tabs_active">
-            <!-- <li class="nav-item active" data-index="1">处理中心</li>
-            <li class="nav-item" data-index="2">AAAAAA</li>
-            <li class="nav-item" data-index="3">BBBBB</li>
-            <li class="nav-item" data-index="4">CCCCC</li>
-            <li class="nav-item" data-index="5">处理中心</li>
-            <li class="nav-item" data-index="6">处理中心</li> -->
-        </ul>
+        <div
+            class="nav-middle hidden-sm-and-down"
+            id="id_nav_middle"
+            v-on:mouseenter="nav_menu_active"
+            @mouseleave="mouse_out"
+            @mousemove="nav_menu_active"
+        >
+            <el-menu-item class="nav-item" index="1" data-index="1" ref="menu1">处理中心</el-menu-item>
+            <!-- <el-menu-item class="nav-item" index="2" data-index="2" ref="menu2">AAAAAA</el-menu-item>
+            <el-menu-item class="nav-item" index="3" data-index="3" ref="menu3">BBBBB</el-menu-item>
+            <el-menu-item class="nav-item" index="4" data-index="4" ref="menu4">CCCCC</el-menu-item>
+            <el-menu-item class="nav-item" index="5" data-index="5" ref="menu5">处理中心</el-menu-item>
+            <el-menu-item class="nav-item" index="6" data-index="6" ref="menu6">处理中心</el-menu-item> -->
+        </div>
 
-        <div class="nav-right">
-            <div class="nav-btn">
-                <ol>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ol>
-            </div>
+        <div class="nav-btn">
+            <ol>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ol>
         </div>
     </el-menu>
 </template>
 
 <script>
-// import {objIsNull, getElemPos} from '../../utils/dom.js'
-import {objIsNull} from '../../utils/dom.js'
+import { getElemPos } from '../../utils/dom.js'
 export default {
     name: 'HomeHeader',
 
@@ -52,27 +55,27 @@ export default {
             console.log(key, keyPath)
         },
 
-        tabs_hover(obj, times) {
+        wfun(left, width, times) {
             if (typeof wtime != 'undefined') clearTimeout(wtime)
             var wtime = window.setTimeout(function() {
-                if (!objIsNull(obj)) {
-                    var rect = obj.getBoundingClientRect()
-                    var left = rect.x + 15
-                    var width = rect.width - 30
-                    var hr = document.getElementById('id_hr')
-                    var cssText = ' left:' + left + 'px; width:' + width + 'px;'
-                    hr.style.cssText = cssText
+                if (width > 0) {
+                    var div = document.getElementById('id_nav_middle')
+                    const pos = getElemPos(div)
+                    var wleft = pos.x + left + 15
+                    var wwidth = width - 30
+                    var obj = document.getElementById('id_hr')
+                    var cssText = ' left:' + wleft + 'px; width:' + wwidth + 'px;'
+                    obj.style.cssText = cssText
                 }
             }, times)
         },
 
-        nav_tabs_active(event) {
+        nav_menu_active(event) {
             if (event.target.nodeName.toLowerCase() === 'li') {
-                // const index = parseInt(event.target.dataset.index)
-                // console.log(event.target.offsetLeft)
-                this.$nextTick(function () {
-                    this.tabs_hover(event.target, 1)
-                })
+                const index = parseInt(event.target.dataset.index)
+                const strRef = 'menu' + index.toString()
+                const obj = this.$refs[strRef].$el
+                this.wfun(obj.offsetLeft, obj.offsetWidth, 1)
             }
         },
 
@@ -85,53 +88,23 @@ export default {
 .nav-bar {
     position: absolute;
     display: table;
-    z-index: 999;
+    z-index: 99999;
     width: 100%;
     height: 90px;
     border: none !important;
     outline: none;
 }
 
-.nav-tabs {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    font-size: 20px;
-    outline: none;
-    transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-}
-
 .nav-item {
-    list-style: none;
-    cursor: pointer;
-    padding: 20px;
-    margin: 0;
     font-size: 20px;
-    color: #ccc;
+}
+.nav-middle .nav-item {
     display: inline-block;
-    transition: .3s;
-    -moz-transition: .3s;
-    -ms-transition: .3s;
-    -o-transition: .3s;
-    -webkit-transition: .3s
 }
-
-.nav-item.active {
-    color: #00dfb9;
-}
-
 
 .nav-item:hover {
     background-color: transparent !important;
     color: red !important;
-    /* font-size: 24px; */
 }
 
 .nav-item:focus {
@@ -295,18 +268,6 @@ export default {
 
 .nav-btn ol.active li {
     background: #fff;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
-}
-
-.nav-btn ol:hover {
-    width:30px;
-    height: 30px;
-}
-
-.nav-btn ol:hover li{
-    background: #fff;
-    width: 13px;
-    height: 13px;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
 }
 

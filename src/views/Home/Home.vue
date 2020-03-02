@@ -1,7 +1,6 @@
 <template>
   <div class="home">
-    <!--<Header />-->
-    <HomeHeader />
+    <Header />
     <div class="window-box">
       <swiper :options="swiperOption" class="window-cut">
         <swiper-slide style="background-color:#41b883" data-hash="banner" data-title="首页">
@@ -36,7 +35,7 @@
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
 import { swiper, swiperSlide } from "vue-awesome-swiper";
-import HomeHeader from "./HomeHeader.vue";
+import Header from "./Header.vue";
 import Banner from "./Banner.vue";
 import * as swiperAni from "../../../public/js/swiper.animate.min.js";
 // import {swiperAnimateCache,swiperAnimate} from "../../../public/js/swiper.animate.min.js"
@@ -75,17 +74,12 @@ export default {
         //preventInteractionOnTransition: true,
         // loop: true,
         pagination: {
-          el: ".window-head ul",
-          bulletClass: "cut",
+          el: ".nav-tabs",
+          bulletClass: "nav-item",
           bulletActiveClass: "active",
           clickable: true,
-          // type: 'custom',
-          // renderCustom: function (swiper, current, total) {
-          //   return current + ' of ' + total;
-          // },
           renderBullet: function(index, className) {
             var title = this.slides.eq(index).attr("data-title");
-            console.log(className);
             // console.log(this.$el.attr("data-title"))
             // switch(index){
             //   case 0:text='首页';break;
@@ -95,17 +89,9 @@ export default {
             //   case 4:text='合作';break;
             //   case 5:text='联系';break;
             // }
-            console.log(title);
             if (title != "")
-              return (
-                '<li class="' +
-                className +
-                '" data-index="' +
-                (index + 1) +
-                '">' +
-                title +
-                "</li>"
-              );
+              var text = '<li data-v-588f3313 class="' + className + '" data-index="' + (index + 1) + '">' + title + "</li>"
+              return (text)
           }
         },
         paginationClickable: true,
@@ -163,7 +149,7 @@ export default {
   components: {
     swiper,
     swiperSlide,
-    HomeHeader,
+    Header,
     Banner
   }
 };
@@ -192,4 +178,5 @@ export default {
   width: 100%;
   height: 100%;
 }
+
 </style>
