@@ -2,7 +2,7 @@
   <div class="home">
     <Header />
     <div class="window-box">
-      <swiper :options="swiperOption" class="window-cut">
+      <swiper :options="swiperOption" class="window-cut" ref="home_swiper">
         <swiper-slide style="background-color:#41b883" data-hash="banner" data-title="首页">
           <!-- <div class="ani banner-box" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s"> -->
           <Banner />
@@ -18,14 +18,15 @@
         </swiper-slide>
         <swiper-slide style="background-color:pink" data-hash="contract" data-title="联系">
         </swiper-slide>
-        <span>-------------</span>
         <!-- <div class="swiper-pagination" slot="pagination"></div> -->
         <!--         <div class="swiper-button-prev" slot="button-prev"></div>
         <div class="swiper-button-next" slot="button-next"></div>
  -->
-        <div class="swiper-scrollbar wrap-scroll">
+<!--         <div class="swiper-scrollbar wrap-scroll" slot="scrollbar">
           <div class="swiper-scrollbar-drag"></div>
         </div>
+ -->
+    <div class="banner-down" slot="button-next" @click="goto_next"><i class="el-icon-bottom"></i></div>
       </swiper>
     </div>
     <span>+++++++++</span>
@@ -90,7 +91,8 @@ export default {
             //   case 5:text='联系';break;
             // }
             if (title != "")
-              var text = '<li data-v-588f3313 class="' + className + '" data-index="' + (index + 1) + '">' + title + "</li>"
+              // var text = '<li data-v-588f3313 class="' + className + '" data-index="' + (index + 1) + '">' + title + "</li>"
+              var text = '<li class="' + className + '" data-index="' + (index + 1) + '">' + title + "</li>"
               return (text)
           }
         },
@@ -135,9 +137,17 @@ export default {
     };
   },
   computed: {
-    //   swiper(){
-    //       return this.$refs.mySwiper.swiper
-    //   }
+      swiper(){
+          return this.$refs.home_swiper.swiper
+      }
+  },
+  methods: {
+    goto_next() {
+        this.swiper.slideNext()
+      // if (this.swiper.activeIndex >= 4) {
+        // event.target.style="display:none"
+      // }
+    }
   },
   mounted() {
     // current swiper instance
@@ -145,7 +155,6 @@ export default {
     //   console.log('this is current swiper instance object', this.swiper)
     //   this.swiper.slideTo(3, 1000, false)
   },
-  methods: {},
   components: {
     swiper,
     swiperSlide,

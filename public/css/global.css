@@ -19,5 +19,165 @@
 }
 
 
+/**** header nav item ****/
+.nav-item {
+    list-style: none;
+    cursor: pointer;
+    padding: 20px;
+    margin: 0;
+    font-size: 20px;
+    color: #ccc;
+    display: inline-block;
+    transition: .3s;
+    -moz-transition: .3s;
+    -ms-transition: .3s;
+    -o-transition: .3s;
+    -webkit-transition: .3s
+}
+
+.nav-item.active {
+    color: #00dfb9;
+}
 
 
+.nav-item:hover {
+    background-color: transparent !important;
+    color: red !important;
+    /* font-size: 24px; */
+}
+
+.nav-item:focus {
+    outline: none;
+    background-color: transparent !important;
+}
+
+/**** banner pager ****/
+.swiper-pagination-bullet {
+  height: 3px;
+}
+
+ .banner-pager .swiper-pagination-bullet {
+    width: 40px;
+    height: 3px;
+    position: relative;
+    line-height: 3px;
+    border-radius: 0;
+    background: #fff;
+    opacity: 1
+}
+
+.banner-pager .swiper-pagination-bullet:before {
+    position: absolute;
+    width: 40px;
+    height: 30px;
+    content: '';
+    left: 0;
+    top: -10px
+}
+
+.banner-pager .swiper-pagination-bullet-active {
+    background: #00dfb9
+}
+
+
+/**** down btn ****/
+.banner-down {
+    position: absolute;
+    top: 90%;
+    cursor: pointer;
+    left: 50%;
+    margin-left: -24px;
+    width: 47px;
+    height: 47px;
+    text-align: center;
+    line-height: 47px;
+    color: #fff;
+    font-size: 24px
+}
+
+.banner-down:before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 47px;
+    height: 47px;
+    background: #fff;
+    opacity: .2;
+    border-radius: 50%;
+    transition: .3s;
+    -moz-transition: .3s;
+    -ms-transition: .3s;
+    -o-transition: .3s;
+    -webkit-transition: .3s
+}
+
+.banner-down:hover:before {
+    background: #00dfb9;
+    opacity: .6
+}
+
+.banner-down i {
+    position: relative;
+    font-size: 40px;
+    z-index: 2
+}
+
+.banner-box.sidebar .banner-bin img {
+    width: 100%
+}
+
+.banner-down i:hover {
+    color: red;
+    background: blue;
+    border-radius: 50%;
+    opacity: .2;
+}
+
+
+@media(max-width:767px) and (orientation:landscape) {
+    .banner-bin .table-box {
+        padding-bottom: 0
+    }
+
+    .banner-news {
+        top: 90%;
+        left: 12.5%;
+        margin: -15px 0 0 0
+    }
+
+    .banner-pager {
+        top: 90%;
+        width: auto !important;
+        left: auto !important;
+        right: 2.5%;
+        margin-top: -1.5px
+    }
+
+    .banner-down {
+        top: 90%;
+        left: 2.5%;
+        margin: -24px 0 0 0
+    }
+}
+
+@media(max-width:767px) and (orientation:portrait) {
+    .banner-bin.swiper-slide-active .banner-write .w1 {
+        line-height: .4
+    }
+
+    .banner-bin .table-box {
+        padding-bottom: 20%
+    }
+
+    .banner-news {
+        top: 74%
+    }
+
+    .banner-pager {
+        top: 82%
+    }
+
+    .banner-down {
+        top: 88%
+    }
+}

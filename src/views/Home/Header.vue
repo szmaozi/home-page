@@ -14,12 +14,6 @@
 
         <hr id="id_hr" />
         <ul class="nav-tabs swiper-pagination hidden-sm-and-down" id="id_nav_tabs" @mouseenter="nav_tabs_active" @mousemove="nav_tabs_active">
-            <!-- <li class="nav-item active" data-index="1">处理中心</li>
-            <li class="nav-item" data-index="2">AAAAAA</li>
-            <li class="nav-item" data-index="3">BBBBB</li>
-            <li class="nav-item" data-index="4">CCCCC</li>
-            <li class="nav-item" data-index="5">处理中心</li>
-            <li class="nav-item" data-index="6">处理中心</li> -->
         </ul>
 
         <div class="nav-right">
@@ -82,6 +76,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
+@import "../../../public/css/global.css";
 .nav-bar {
     position: absolute;
     display: table;
@@ -108,36 +103,6 @@ export default {
     -webkit-transform: translate(-50%, -50%);
 }
 
-.nav-item {
-    list-style: none;
-    cursor: pointer;
-    padding: 20px;
-    margin: 0;
-    font-size: 20px;
-    color: #ccc;
-    display: inline-block;
-    transition: .3s;
-    -moz-transition: .3s;
-    -ms-transition: .3s;
-    -o-transition: .3s;
-    -webkit-transition: .3s
-}
-
-.nav-item.active {
-    color: #00dfb9;
-}
-
-
-.nav-item:hover {
-    background-color: transparent !important;
-    color: red !important;
-    /* font-size: 24px; */
-}
-
-.nav-item:focus {
-    outline: none;
-    background-color: transparent !important;
-}
 
 .nav-left {
     position: absolute;

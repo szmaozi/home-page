@@ -2,19 +2,19 @@
   <!-- swiper -->
   <swiper :options="swiperOption1">
 
-    
+
     <swiper-slide v-for="item in images" :key="item">
       <div :data-background="item" class="swiper-lazy banner-bin">
         <div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div>
       </div>
     </swiper-slide>
-    <div class="banner-ctrl">
-      <div class="ctrl-box ctrl-left"><i class="el-icon-caret-left"></i></div>
-      <div class="ctrl-box ctrl-right"><i class="el-icon-caret-right"></i></div>
-    </div>
+
+
+    <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
+    <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
     <div class="banner-pager swiper-pagination" slot="pagination"></div>
-    <!-- <div class="banner-pager" slot="pagination"></div> -->
-    <div class="banner-down">down<i class="fa fa-angle-down"></i></div>
+    <!-- <div class="banner-down" slot="button-next">down11111<i class="el-icon-bottom"></i></div> -->
+
   </swiper>
 </template>
 
@@ -48,14 +48,14 @@ export default {
           el: '.banner-pager',
           // el: '.swiper-pagination',
           clickable: true,
-          bulletClass: 'banner-page-bullet',
-          bulletActiveClass: 'active'
+          // bulletClass: 'banner-page-bullet',
+          // bulletActiveClass: 'active'
         },
         navigation: {
-          nextEl: '.ctrl-right',
-          prevEl: '.ctrl-left',
-          // nextEl: '.swiper-button-next',
-          // prevEl: '.swiper-button-prev'
+          // nextEl: '.ctrl-right',
+          // prevEl: '.ctrl-left',
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
         }
       },
       images: [
@@ -77,8 +77,14 @@ export default {
 
 <style lang="css" scoped>
 /* @import "~swiper/dist/css/swiper.css"; */
-/* @import '~animate.css/animate.min.css'; */
-/* @import "../../../public/css/global.css"; */
+ /*@import '~animate.css/animate.min.css';*/
+@import "../../../public/css/global.css";
+
+  .swiper-container{
+    --swiper-theme-color: #ff6600;/* 设置Swiper风格 */
+    --swiper-navigation-color: #00ff33;/* 单独设置按钮颜色 */
+    --swiper-navigation-size: 100px;/* 设置按钮大小 */
+  }
 
 .swiper-slide {
   text-align: center;
@@ -135,197 +141,9 @@ export default {
     left: 0;
     right: 0;
     text-align: center;
-    background: yellow;
 }
 
-.swiper-pagination-bullet {
-  height: 300px;
-  background: red !important;
-}
-
-.banner-page-bullet{
-    width: 40px;
-    height: 3px;
-    position: relative;
-    line-height: 3px;
-    border-radius: 0;
-    /* background: #fff; */
-    background: red;
-    opacity: 1
-}
-
-.banner-page-bullet:before {
-    position: absolute;
-    width: 40px;
-    height: 30px;
-    content: '';
-    left: 0;
-    top: -10px
-}
-
-.banner-page-bullet .active {
-    background: #00dfb9
-}
-
-/* .banner-pager .swiper-pagination-bullet {
-    width: 40px;
-    height: 3px;
-    position: relative;
-    line-height: 3px;
-    border-radius: 0;
-    background: #fff;
-    opacity: 1
-}
-
-.banner-pager .swiper-pagination-bullet:before {
-    position: absolute;
-    width: 40px;
-    height: 30px;
-    content: '';
-    left: 0;
-    top: -10px
-}
-
-.banner-pager .swiper-pagination-bullet-active {
-    background: #00dfb9
-} */
 
 
-.banner-down {
-    position: absolute;
-    top: 90%;
-    cursor: pointer;
-    left: 50%;
-    margin-left: -24px;
-    width: 47px;
-    height: 47px;
-    text-align: center;
-    line-height: 47px;
-    color: #fff;
-    font-size: 24px
-}
 
-.banner-down:before {
-    content: '';
-    position: absolute;
-    display: block;
-    width: 47px;
-    height: 47px;
-    background: #fff;
-    opacity: .2;
-    border-radius: 50%;
-    transition: .3s;
-    -moz-transition: .3s;
-    -ms-transition: .3s;
-    -o-transition: .3s;
-    -webkit-transition: .3s
-}
-
-.banner-down:hover:before {
-    background: #00dfb9;
-    opacity: .6
-}
-
-.banner-down i {
-    position: relative;
-    z-index: 2
-}
-
-.banner-box:hover .banner-ctrl {
-    opacity: 1
-}
-
-.banner-box.sidebar .banner-bin img {
-    width: 100%
-}
-
-.ctrl-box {
-    opacity: .5
-}
-
-.ctrl-box:hover {
-    opacity: 1
-}
-
-.banner-ctrl .ctrl-box {
-    position: absolute;
-    color: #a8a8a8;
-    width: 80px;
-    text-align: center;
-    line-height: 80px;
-    font-size: 50px;
-    cursor: pointer;
-    transition: .3s;
-    -webkit-transition: .3s;
-    -moz-transition: .3s;
-    -ms-transition: .3s;
-    -o-transition: .3s
-}
-
-.banner-ctrl .ctrl-box:hover {
-    color: #00dfb9
-}
-
-.banner-ctrl .ctrl-left {
-    left: 5%;
-    top: 46%;
-    margin-top: -40px
-}
-.banner-ctrl .ctrl-right {
-    right: 5%;
-    top: 46%;
-    margin-top: -40px
-}
-
-@media(max-width:767px) and (orientation:landscape) {
-    .banner-bin .table-box {
-        padding-bottom: 0
-    }
-
-    .banner-news {
-        top: 90%;
-        left: 12.5%;
-        margin: -15px 0 0 0
-    }
-
-    .banner-pager {
-        top: 90%;
-        width: auto !important;
-        left: auto !important;
-        right: 2.5%;
-        margin-top: -1.5px
-    }
-
-    .banner-down {
-        top: 90%;
-        left: 2.5%;
-        margin: -24px 0 0 0
-    }
-}
-
-@media(max-width:767px) and (orientation:portrait) {
-    .banner-bin.swiper-slide-active .banner-write .w1 {
-        line-height: .4
-    }
-
-    .banner-bin .table-box {
-        padding-bottom: 20%
-    }
-
-    .banner-news {
-        top: 74%
-    }
-
-    .banner-pager {
-        top: 82%
-    }
-
-    .banner-down {
-        top: 88%
-    }
-
-    .banner-ctrl {
-        display: none
-    }
-}
 </style>

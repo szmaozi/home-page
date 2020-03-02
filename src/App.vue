@@ -10,17 +10,18 @@
       <!--<el-button>el-button</el-button>-->
     <!--</div>-->
     <!--<HelloWorld msg="Welcome to Your Vue.js App"/>-->
-    <Home />
+    <!-- <Home /> -->
+    <router-view />
   </div>
 </template>
 
 <script>
-import Home from './views/Home/Home.vue'
+// import Home from './views/Home/Home.vue'
 
 export default {
   name: 'app',
   components: {
-    Home
+    // Home
   }
 }
 </script>
