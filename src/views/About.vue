@@ -17,10 +17,18 @@
     <div>
       <a href="/#hezuo">人口画像</a>
     </div>
+    <div class="flex-container">
+      <div>111</div>
+      <div>222</div>
+      <div>333</div>
+      <div>444</div>
+    </div>
+    <News />
   </div>
 </template>
 
 <script>
+import News from "./Home/News.vue"
 export default {
   name: "About",
   data() {
@@ -31,11 +39,17 @@ export default {
 
   },
   components: {
+    News
   }
 }
 </script>
 
 <style scoped>
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 * {
   padding: 0;
   margin: 0;

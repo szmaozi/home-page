@@ -2,13 +2,20 @@
   <div class="home">
     <Header />
     <div class="window-box">
-      <swiper :options="swiperOption" class="window-cut" ref="home_swiper">
-        <swiper-slide style="background-color:#41b883" data-hash="banner" data-title="首页">
-          <!-- <div class="ani banner-box" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s"> -->
+      <swiper :options="swiperOption" class="window-cut" ref="home_swiper" >
+        <swiper-slide data-hash="banner" data-title="首页">
+          <!--<div style="height:100%" class="ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="1.5s" swiper-animate-delay="0.3s">-->
+          <div style="height: 100%">
           <Banner />
-          <!-- </div> -->
+          </div>
         </swiper-slide>
-        <swiper-slide data-hash="service" data-title="服务">
+        <swiper-slide data-hash="service" data-title="服务" >
+          <div :data-background="require('$../../../public/images/d2be13178d9149cf911073330d03c5ed.jpeg')"  class="swiper-lazy service-container">
+            <div class="title-box">
+              <h1 class="ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="1.5s" swiper-animate-delay="0.3s" >我们的服务</h1>
+              <h2><font color=white>Main business</font></h2>
+            </div>
+          </div>
         </swiper-slide>
         <swiper-slide data-hash="case" data-title="案例">
         </swiper-slide>
@@ -115,15 +122,15 @@ export default {
           init: function() {
             //初始化
             console.log("init!!!");
-            // swiperAni.swiperAnimateCache(this); //隐藏动画元素
-            // swiperAni.swiperAnimate(this); //初始化完成开始动画
+            swiperAni.swiperAnimateCache(this); //隐藏动画元素
+            swiperAni.swiperAnimate(this); //初始化完成开始动画
           },
           slideChangeTransitionEnd: function() {
             //切换完执行的方法
             var num = this.activeIndex; //当前是第几个页面
             console.log(num);
             // ......    //这里是自己逻辑的代码
-            // swiperAni.swiperAnimate(this);
+            swiperAni.swiperAnimate(this);
           },
           slideChange: function() {
             swiperAni.swiperAnimate(this);
@@ -166,6 +173,7 @@ export default {
 <style scoped>
 @import "~swiper/dist/css/swiper.css";
 /* @import '~animate.css/animate.min.css'; */
+@import "../../../public/css/animate.min.css";
 @import "../../../public/css/global.css";
 
 * {
@@ -186,6 +194,28 @@ export default {
 .swiper-container {
   width: 100%;
   height: 100%;
+}
+
+.service-container {
+    /*width: 10%;
+    height: 100%;
+    float: left;
+    display: block;
+    overflow: hidden;
+    */
+    position: relative;
+    width:100%;
+    height: 100%;
+    background: center no-repeat;
+    background-size: cover;
+}
+
+.title-box {
+  position: relative;
+  top: 50%;
+  /**
+  left: 50%;
+  **/
 }
 
 </style>

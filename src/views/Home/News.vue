@@ -1,83 +1,84 @@
 <template>
-          <div class="banner-news">
-            <b>NEWS：</b>
-            <span class="banner-span">
-              <ol class="banner-ol">
-
-                <li class="banner-li"><a href="news/shownews.php?lang=cn&id=86" title="从阿里云到腾讯云 中国云市场竞争才刚开始">从阿里云到腾讯云 中国云市场竞争才刚开始</a></li>
-
-                <li class="banner-li"><a href="news/shownews.php?lang=cn&id=64" title="公司新获3项计算机软件著作权认证">公司新获3项计算机软件著作权认证</a></li>
-
-                <li class="banner-li"><a href="news/shownews.php?lang=cn&id=77" title="云计算行业深度调研及发展趋势">云计算行业深度调研及发展趋势</a></li>
-
-                <li class="banner-li"><a href="news/shownews.php?lang=cn&id=78" title="云计算发展路径，中美相差5年">云计算发展路径，中美相差5年</a></li>
-
-                <li class="banner-li"><a href="news/shownews.php?lang=cn&id=83" title="听了想打人！马云：我觉得自己是一无所有的人，没时间花钱">听了想打人！马云：我觉得自己是一无所有的人，没时间花钱</a></li>
-
-                <li class="banner-li"><a href="news/shownews.php?lang=cn&id=85" title="企业为何纷纷要建站？">企业为何纷纷要建站？</a></li>
-
-                <li class="banner-li"><a href="news/shownews.php?lang=cn&id=84" title="国内哪些地方适合自建数据中心？">国内哪些地方适合自建数据中心？</a></li>
-
-                <li class="banner-li"><a href="news/shownews.php?lang=cn&id=82" title="这家公司专门做假数据中心！不仅合法，还赚翻了！">这家公司专门做假数据中心！不仅合法，还赚翻了！</a></li>
-
-                <li class="banner-li"><a href="news/shownews.php?lang=cn&id=81" title="阿里云主机按量收费变按配置收费 开启坑爹模式">阿里云主机按量收费变按配置收费 开启坑爹模式</a></li>
-
-              </ol>
-            </span>
-            <p><a href="news/" title="新闻资讯">more</a></p>
-          </div>
+<div class="news-container">
+  <b>NEWS：</b>
+  <swiper :options="swiperOption" style="height:30px">
+    <swiper-slide v-for="item in data" :key="item.id">
+      <a :href="item.href" :title="item.title">{{item.title}}</a>
+    </swiper-slide>
+  </swiper>
+  <p><a href="news/" title="新闻资讯">more</a></p>
+</div>
 </template>
 
 <script>
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
-
   name: 'news',
-
   data () {
     return {
-
+      swiperOption: {
+        direction : 'vertical',
+        loop: true,
+        slidesPerView: 1,
+        speed: 1000,
+        height: 30,
+        /*
+        height: 30,
+        setWrapperSize :true,
+        */
+        autoplay: {
+           delay: 2500,
+           stopOnLastSlide: false,
+           disableOnInteraction: true,
+        },
+      },
+      data : [
+        { id: 1, href: 'news/12181', title: 'AAAAAAAAAA不不不' },
+        { id: 2, href: 'news/12182', title: 'BBBBBBBB不不不' },
+        { id: 3, href: 'news/12183', title: 'CCCCCC不不不' },
+        { id: 4, href: 'news/12186', title: 'DDDDDD不不不' },
+      ]
     }
+  },
+  components: {
+    swiper,
+    swiperSlide,
   }
 }
 </script>
 
 <style lang="css" scoped>
-.banner-news {
-    position: absolute;
-    /*positon: fixed;*/
-    background-color: red;
-    z-index: 9999;
-/*    top: 79%;
-    left: 50%;*/
-    top: 200px;
-    left: 40px;
-    margin-left: -188px;
-    height: 30px;
-    width: 100px;
-    line-height: 30px
+.news-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
 
-.banner-news b {
+.news-container .news-item {
+    display: block;
+}
+
+.new-container b {
     float: left;
     color: #00dfb9;
     font-weight: bold;
     margin-right: 10px
 }
 
-.banner-news span {
+.news-container span {
     float: left;
     overflow: hidden;
     height: 30px;
     overflow: hidden
 }
 
-.banner-news span ol {
+.news-container .swiper-wrapper {
     float: left;
     margin: 0;
     padding: 0
 }
 
-.banner-news span ol li {
+.news-container .swiper-slide {
     list-style: none;
     color: #ddd;
     margin: 0;
@@ -91,21 +92,21 @@ export default {
     overflow: hidden
 }
 
-.banner-news span ol li a {
+.news-container .swiper-slide a{
     color: #ddd
 }
 
-.banner-news span ol li a:hover {
+.news-container .swiper-slide a:hover {
     text-decoration: underline;
     color: #fff
 }
 
-.banner-news p {
+.news-container p {
     float: left;
     margin: -3px 0 0 10px
 }
 
-.banner-news p a {
+.news-container p a {
     color: #00dfb9;
     border-bottom: 1px dotted #00dfb9
 }

@@ -1,8 +1,6 @@
 <template>
   <!-- swiper -->
   <swiper :options="swiperOption1">
-
-
     <swiper-slide v-for="item in images" :key="item">
       <div :data-background="item" class="swiper-lazy banner-bin">
         <!-- <div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div> -->
@@ -35,7 +33,7 @@
   <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
 
      <!-- <div class="banner-news" slot="button-next">hhhhhhhhh</div> -->
-     <div slot="button-prev">
+     <div class="banner-news" slot="button-prev">
         <News />
      </div>
   <div class="banner-pager swiper-pagination" slot="pagination"></div>
@@ -58,7 +56,7 @@ export default {
         lazy: {
           loadPrevNext: true,
         },
-        parallax: true,
+        // parallax: true,
         speed: 800,
         loop: true,
         keyboard: {
@@ -175,18 +173,13 @@ export default {
 
 .banner-news {
     position: absolute;
-    /*position: fixed;*/
-    background-color: blue;
-    z-index: 9999;
+    z-index: 1;
     top: 79%;
     left: 50%;
-/*    top: 200px;
-    left: 2000px;
-*/    margin-left: -188px;
-    height: 30px;
-    width: 100px;
+    margin-left: -188px;
+    height: 100px;
+    width: 600px;
     line-height: 30px
 }
-
 
 </style>
