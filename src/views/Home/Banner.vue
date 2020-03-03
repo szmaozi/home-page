@@ -5,20 +5,47 @@
 
     <swiper-slide v-for="item in images" :key="item">
       <div :data-background="item" class="swiper-lazy banner-bin">
-        <div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div>
+        <!-- <div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div> -->
+          <div class="table-box">
+            <div class="table-cell">
+              <div class="banner-write ">
+
+                <span class="w1">5</span>
+
+                <span class="w2">
+                  <span class="w21">年专注 · 互联网+区块链</span>
+                  <span class="w22">EChain易链</span>
+                  <span class="w23"><br/><font color=#ffe000>去中心化、智能合约、开放透明、安全匿名、简单易用</font><br/><br/><em>EChain区块链，帮助企业实现业务金融化、资产数字化</em><br/></span>
+                </span>
+              </div>
+
+              <div class="banner-full visible-lg-block">
+                <ol class="list-paddingleft-2"><li><p><br/></p></li><li><p><br/></p></li><li><p><br/></p></li><li><p><br/></p></li></ol>
+                <ul class="list-paddingleft-2"><li><p><br/></p></li><li><p><br/></p></li><li><p><br/></p></li><li><p><br/></p></li></ul>
+              </div>
+              <div class="banner-border visible-lg-block"></div>
+
+            </div>
+          </div>
       </div>
     </swiper-slide>
 
 
-    <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
-    <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
-    <div class="banner-pager swiper-pagination" slot="pagination"></div>
-    <!-- <div class="banner-down" slot="button-next">down11111<i class="el-icon-bottom"></i></div> -->
+  <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
+  <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
+
+     <!-- <div class="banner-news" slot="button-next">hhhhhhhhh</div> -->
+     <div slot="button-prev">
+        <News />
+     </div>
+  <div class="banner-pager swiper-pagination" slot="pagination"></div>
+  <!-- <div class="banner-down" slot="button-next">down11111<i class="el-icon-bottom"></i></div> -->
 
   </swiper>
 </template>
 
 <script>
+import News from './News.vue'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import pic1 from "@../../../public/images/1481161992.jpg"
 export default {
@@ -31,6 +58,7 @@ export default {
         lazy: {
           loadPrevNext: true,
         },
+        parallax: true,
         speed: 800,
         loop: true,
         keyboard: {
@@ -71,6 +99,7 @@ export default {
   components: {
       swiper,
       swiperSlide,
+      News,
   }
 }
 </script>
@@ -144,6 +173,20 @@ export default {
 }
 
 
+.banner-news {
+    position: absolute;
+    /*position: fixed;*/
+    background-color: blue;
+    z-index: 9999;
+    top: 79%;
+    left: 50%;
+/*    top: 200px;
+    left: 2000px;
+*/    margin-left: -188px;
+    height: 30px;
+    width: 100px;
+    line-height: 30px
+}
 
 
 </style>

@@ -26,7 +26,7 @@
           <div class="swiper-scrollbar-drag"></div>
         </div>
  -->
-    <div class="banner-down" slot="button-next" @click="goto_next"><i class="el-icon-bottom"></i></div>
+    <div class="banner-down" slot="button-next" @click="gotoNext"><i class="el-icon-bottom"></i></div>
       </swiper>
     </div>
     <span>+++++++++</span>
@@ -142,12 +142,12 @@ export default {
       }
   },
   methods: {
-    goto_next() {
+    gotoNext() {
         this.swiper.slideNext()
       // if (this.swiper.activeIndex >= 4) {
         // event.target.style="display:none"
       // }
-    }
+    },
   },
   mounted() {
     // current swiper instance

@@ -13,6 +13,10 @@
      <span class="a1"></span>
      <span class="a1"></span>
     </div>
+    <router-link to="/">[跳转到主页]</router-link>
+    <div>
+      <a href="/#hezuo">人口画像</a>
+    </div>
   </div>
 </template>
 

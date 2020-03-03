@@ -9,7 +9,9 @@
         active-text-color="#ffd04b"
     >
         <div class="nav-left">
+            <a href="#banner">
             <img src="../../../public/images/1487557837.png" />
+            </a>
         </div>
 
         <hr id="id_hr" />
@@ -40,6 +42,12 @@ export default {
             activeIndex: '1',
             activeIndex2: '1'
         }
+    },
+    props: {
+      // gotoTop: {
+      //   type: Function,
+      //   default: null
+      // }
     },
     methods: {
         handleSelect(key, keyPath) {
