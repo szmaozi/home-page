@@ -6,7 +6,7 @@ shdhfhdshfhdsf
   </swiper-slide>
   <swiper-slide>
   <Header :toggleMenu="toggleMenu" ref="ref_header"/>
-    <div class="window-box">
+    <div class="window-box" :class="{ menumode: is_menu_mode }">
       <swiper :options="swiperOption" class="window-cut" ref="home_swiper" >
         <swiper-slide data-hash="banner" data-title="首页">
           <!--<div style="height:100%" class="ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="1.5s" swiper-animate-delay="0.3s">-->
@@ -59,6 +59,7 @@ export default {
 	// const self = this
     return {
       msg: "",
+      is_menu_mode: false,
 		swiperOptionMenu: {
 		initialSlide: 1,
 		resistanceRatio: 0,
@@ -96,6 +97,8 @@ export default {
         lazy: {
           loadPrevNext: true,
         },
+        observer:true,
+        observeParents:true, 
         pagination: {
           el: ".nav-tabs",
           bulletClass: "nav-item",
@@ -170,6 +173,7 @@ export default {
       console.log('show_menu')
 	},
       toggleMenu() {
+        this.is_menu_mode = !this.is_menu_mode
         if (this.swiper_menu.activeIndex === 0) {
           this.swiper_menu.slideNext()
         } else {

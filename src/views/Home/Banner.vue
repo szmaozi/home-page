@@ -70,6 +70,8 @@ export default {
         grabCursor: true,
         slidesPerView: 1,
         mousewheel: false,
+        observer:true,
+        observeParents:true, 
         pagination: {
           el: '.banner-pager',
           // el: '.swiper-pagination',
