@@ -1,6 +1,11 @@
 <template>
   <div class="home">
-    <Header />
+  <swiper :options="swiperOptionMenu" class="home-menu" ref="menu_swiper" >
+  <swiper-slide style="height:100%; width:30%; min-width:100px;max-width:320px; background-color:red">
+shdhfhdshfhdsf
+  </swiper-slide>
+  <swiper-slide>
+  <Header :toggleMenu="toggleMenu" ref="ref_header"/>
     <div class="window-box">
       <swiper :options="swiperOption" class="window-cut" ref="home_swiper" >
         <swiper-slide data-hash="banner" data-title="首页">
@@ -15,15 +20,16 @@
               <h1 class="ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="1.5s" swiper-animate-delay="0.3s" >我们的服务</h1>
               <h2><font color=white>Main business</font></h2>
             </div>
+            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
           </div>
         </swiper-slide>
         <swiper-slide data-hash="case" data-title="案例">
         </swiper-slide>
-        <swiper-slide style="background-color:seagreen" data-hash="about" data-title="关于">
+        <swiper-slide data-hash="about" data-title="关于">
         </swiper-slide>
-        <swiper-slide style="background-color:yellow" data-hash="hezuo" data-title="合作">
+        <swiper-slide data-hash="hezuo" data-title="合作">
         </swiper-slide>
-        <swiper-slide style="background-color:pink" data-hash="contract" data-title="联系">
+        <swiper-slide data-hash="contract" data-title="联系">
         </swiper-slide>
         <!-- <div class="swiper-pagination" slot="pagination"></div> -->
         <!--         <div class="swiper-button-prev" slot="button-prev"></div>
@@ -36,7 +42,8 @@
     <div class="banner-down" slot="button-next" @click="gotoNext"><i class="el-icon-bottom"></i></div>
       </swiper>
     </div>
-    <span>+++++++++</span>
+  </swiper-slide>
+  </swiper>
   </div>
 </template>
 <script>
@@ -46,17 +53,34 @@ import { swiper, swiperSlide } from "vue-awesome-swiper";
 import Header from "./Header.vue";
 import Banner from "./Banner.vue";
 import * as swiperAni from "../../../public/js/swiper.animate.min.js";
-// import {swiperAnimateCache,swiperAnimate} from "../../../public/js/swiper.animate.min.js"
 export default {
   name: "Home",
   data() {
+	// const self = this
     return {
       msg: "",
+		swiperOptionMenu: {
+		initialSlide: 1,
+		resistanceRatio: 0,
+		slidesPerView: 'auto',
+		slideToClickedSlide: true,
+          on: {
+            slideChange() {
+				console.log("menu------------")
+				/**
+              if (this.activeIndex === 0) {
+                self.menuCross = true
+              } else {
+                self.menuCross = false
+              }
+			**/
+            }
+          }
+      },
       swiperOption: {
         direction: "vertical",
         slidesPerView: 1,
         centeredSlides: true,
-        lazy: true,
         resistanceRatio: 0,
         speed: 700,
         effect: "slide",
@@ -64,23 +88,14 @@ export default {
         keyboard: {
           enabled: true
         },
+        roundLengths: true,
         mousewheel: true,
         hashNavigation: {
           watchState: true,
         },
-        // lazyLoadingOnTransitionStart: true,
-        // roundLengths : true,
-        //将observe应用于Swiper的父元素。当Swiper的父元素变化时，例如window.resize，Swiper更新
-        // observer:true,
-        // observeParents:true,
-        //Swiper使用flexbox布局(display: flex)，开启这个设定会在Wrapper上添加等于slides相加的宽或高，在对flexbox布局的支持不是很好的浏览器中可能需要用到。
-        // setWrapperSize: true,
-        // resistance: true,
-        // spaceBetween: 30,
-        //width: window.innerWidth,
-        //height: window.innerHeight,
-        //preventInteractionOnTransition: true,
-        // loop: true,
+        lazy: {
+          loadPrevNext: true,
+        },
         pagination: {
           el: ".nav-tabs",
           bulletClass: "nav-item",
@@ -98,26 +113,11 @@ export default {
             //   case 5:text='联系';break;
             // }
             if (title != "")
-              // var text = '<li data-v-588f3313 class="' + className + '" data-index="' + (index + 1) + '">' + title + "</li>"
               var text = '<li class="' + className + '" data-index="' + (index + 1) + '">' + title + "</li>"
               return (text)
           }
         },
         paginationClickable: true,
-        // navigation: {
-        //   nextEl: '.swiper-button-next',
-        //   prevEl: '.swiper-button-prev'
-        // },
-        // watchSlidesProgress : true,
-        // watchSlidesVisibility : true,
-        // scrollbar: {
-        //     el: '.wrap-scroll',
-        //     hide: false,
-        //     draggable: true,
-        // },
-        // autoplay : {
-        //   delay : 10000,//自动播放延迟10s
-        // },
         on: {
           init: function() {
             //初始化
@@ -132,35 +132,53 @@ export default {
             // ......    //这里是自己逻辑的代码
             swiperAni.swiperAnimate(this);
           },
-          slideChange: function() {
-            swiperAni.swiperAnimate(this);
+
+          // 使用es6的箭头函数，使this指向vue对象
+          slideChange: ()=>{
+            if (this.swiper)
+            {
+              swiperAni.swiperAnimate(this.swiper);
+              if (this.swiper.activeIndex === 0) {
+                this.$refs.ref_header.disActive()
+              }
+              else {
+                this.$refs.ref_header.doActive()
+              }
+              let that = this
+              window.setTimeout(function() {
+                that.$refs.ref_header.nav_tabs_active()
+              }, 400)
+            }
           }
         }
-        // some swiper options/callbacks
-        // 所有的参数同 swiper 官方 api 参数
-        // ...
       }
-      // swiperSlides: [1,2,3,4,5]
     };
   },
   computed: {
       swiper(){
           return this.$refs.home_swiper.swiper
+      },
+      swiper_menu(){
+          return this.$refs.menu_swiper.swiper
       }
   },
   methods: {
     gotoNext() {
         this.swiper.slideNext()
-      // if (this.swiper.activeIndex >= 4) {
-        // event.target.style="display:none"
-      // }
     },
+	show_menu() {
+      console.log('show_menu')
+	},
+      toggleMenu() {
+        if (this.swiper_menu.activeIndex === 0) {
+          this.swiper_menu.slideNext()
+        } else {
+          // this.menuCross = false
+          this.swiper_menu.slidePrev()
+        }
+      },
   },
   mounted() {
-    // current swiper instance
-    // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
-    //   console.log('this is current swiper instance object', this.swiper)
-    //   this.swiper.slideTo(3, 1000, false)
   },
   components: {
     swiper,
@@ -182,7 +200,9 @@ export default {
 }
 
 .home {
+	/*
   background-color: aquamarine;
+  */
   position: fixed;
   /* ?? why? */
   top: 0px;

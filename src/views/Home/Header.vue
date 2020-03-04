@@ -2,11 +2,13 @@
     <el-menu
         :default-active="activeIndex2"
         class="nav-bar"
+        :class="{active: isActive}"
         mode="horizontal"
         @select="handleSelect"
-        background-color="transparent"
+
         text-color="#fff"
         active-text-color="#ffd04b"
+        ref="ref_navbar"
     >
         <div class="nav-left">
             <a href="#banner">
@@ -15,11 +17,14 @@
         </div>
 
         <hr id="id_hr" />
-        <ul class="nav-tabs swiper-pagination hidden-sm-and-down" id="id_nav_tabs" @mouseenter="nav_tabs_active" @mousemove="nav_tabs_active">
+        <ul class="nav-tabs swiper-pagination hidden-sm-and-down"
+            @mouseenter="nav_tabs_hover"
+            @mousemove="nav_tabs_hover"
+            ref="ref_navtabs">
         </ul>
 
         <div class="nav-right">
-            <div class="nav-btn">
+            <div class="nav-btn" @click="toggleMenu">
                 <ol>
                     <li></li>
                     <li></li>
@@ -32,7 +37,6 @@
 </template>
 
 <script>
-// import {objIsNull, getElemPos} from '../../utils/dom.js'
 import {objIsNull} from '../../utils/dom.js'
 export default {
     name: 'HomeHeader',
@@ -40,21 +44,32 @@ export default {
     data() {
         return {
             activeIndex: '1',
-            activeIndex2: '1'
+            activeIndex2: '1',
+            isActive: false,
         }
     },
     props: {
-      // gotoTop: {
-      //   type: Function,
-      //   default: null
-      // }
+		toggleMenu: {
+			type: Function,
+			default: null
+		}
     },
     methods: {
+		
+        doActive() {
+            console.log('Active')
+            this.isActive = true
+            // this.$ref.ref_navbar.style
+        },
+        disActive() {
+            this.isActive = false
+            console.log('disactive')
+        },
         handleSelect(key, keyPath) {
             console.log(key, keyPath)
         },
 
-        tabs_hover(obj, times) {
+        hr_cal(obj, times) {
             if (typeof wtime != 'undefined') clearTimeout(wtime)
             var wtime = window.setTimeout(function() {
                 if (!objIsNull(obj)) {
@@ -68,17 +83,20 @@ export default {
             }, times)
         },
 
-        nav_tabs_active(event) {
+        nav_tabs_hover(event) {
             if (event.target.nodeName.toLowerCase() === 'li') {
                 // const index = parseInt(event.target.dataset.index)
                 // console.log(event.target.offsetLeft)
                 this.$nextTick(function () {
-                    this.tabs_hover(event.target, 1)
+                    this.hr_cal(event.target, 1)
                 })
             }
         },
 
-        mouse_out() {}
+        nav_tabs_active() {
+            var obj = document.getElementsByClassName("nav-item active");
+            this.hr_cal(obj[0], 2)
+        },
     }
 }
 </script>
@@ -93,6 +111,7 @@ export default {
     height: 90px;
     border: none !important;
     outline: none;
+    background-color:transparent;
 }
 
 .nav-tabs {
@@ -281,6 +300,12 @@ export default {
     width: 13px;
     height: 13px;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.nav-bar.active{
+    height: 70px;
+    /*background: rgba(0,0,0,.5)*/
+    background-color: red;
 }
 
 @media (min-width: 300px) {
